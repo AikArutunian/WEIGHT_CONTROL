@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="12cols.css">
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html">
+    <link rel="import" href="http://www.polymer-project.org/components/core-icons/core-icons.html">
+    <title>Набор и потеря веса</title>
+</head>
+<body>
+
+
+<section>
+    <div id="chart_div" class="card span_12_of_12"></div>
+</section>
+
+    <div class="buttonBar span_4_of_12">
+        <input id="inputDate" type="text" placeholder="Дата" required>
+        <input id="inputWeight" type="text" placeholder="Вес" required>
+        <div class="button raised green" id="addButton">Добавить измерение
+            <paper-ripple fit></paper-ripple>
+        </div>
+    </div>
+
+    <div class="buttonBar span_4_of_12">
+        <input id="inputStart" type="text" placeholder="Начало" required>
+        <input id="inputEnd" type="text" placeholder="Конец" required>
+        <div class="button raised blue" id="showStats">Посмотреть период
+            <paper-ripple fit></paper-ripple>
+        </div>
+    </div>
+
+
+    <div class="buttonBar" span_4_of_12">
+        <div class="button raised red" id="showStats">Удалить последнее
+            <paper-ripple fit></paper-ripple>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+body {
+    background-color: #f9f9f9;
+    font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+}
+
+
+#chart_div {
+    height: 400px;
+    margin:auto;
+}
+
+.card {
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* Button */
+.button {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 2px;
+    font-size: 0.9em;
+    color: #646464;
+    margin: 10px;
+    float: left;
+}
+
+.button > paper-ripple {
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.button.blue {
+    background-color: #4285f4;
+    color: #fff;
+    text-align: center;
+}
+
+.button.green {
+    background-color: #0f9d58;
+    color: #fff;
+    text-align: center;
+}
+
+.button.red {
+    background-color: #db4437;
+    color: #fff;
+    text-align: center;
+}
+
+.button.raised {
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.button.raised:active {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: 0s;
+}
+
+.buttonBar {
+    float: left;
+    margin: 30px 0;
+}
+
+input {
+    margin: 10px;
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    width:150px;
+    border:none;
+    display: block;
+}
+
+input:active {
+    border-bottom: 1px solid darkslategrey;
+}
+
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+    position:absolute;
+    height:60%;
+    width:100px;
+    top:25%;
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+}
