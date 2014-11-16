@@ -34,46 +34,94 @@ var mainArray = [
     ["9/11", 65.9]
 ];
 
-var dateArray;
-
 
 function drawChart() {
     var data = google.visualization.arrayToDataTable(mainArray);
-
     var options = {
         title: 'СЛЕДИМ ЗА ВЕСОМ'
     };
-
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
     chart.draw(data, options)
 }
 
 
 $('#addButton').on('click', function () {
-    if($('#inputDate').val() != ''){
+    if($('#inputDate').val() != '') {
         var todayDate = $('#inputDate').val();
         var todayWeight = $('#inputWeight').val();
         mainArray.push([todayDate, todayWeight]);
         drawChart();
         $('#inputDate').val('');
         $('#inputWeight').val('');
-    }
 
+    }
 
 });
 
-function findDate(a, b) {
-    for (i = 0; i < mainArray.length; i++) {
-        if (mainArray[i].indexOf(a) >= 0) {
-            var startDate = i
-            console.log(mainArray[i]);
-        }
-        if (mainArray[i].indexOf(b) >= 0) {
-            console.log(mainArray[i]);
-            var endDate = i
-        }
-    }
-    dateArray = mainArray.slice(startDate, endDate)
-    console.log(dateArray);
+$('#showStats').on('click', function () {
+    if($('#startDate').val() != '') {
+        var startDate = $('#startDate').val();
+        var endDate = $('#endDate').val();
+        periodArr = mainArray.splice(startDate, endDate);
+        alert(periodArr);
+        drawChart()
+        $('#startDate').val('');
+        $('#endDate').val('');
 }
+
+});
+
+
+//======УДАЛИТЬ ИЗМЕРЕНИЕ!===================
+
+$('#deleteLast').on('click', function () {
+    drawChart()
+    periodArr=mainArray.splice(mainArray.length-1);
+        //alert(periodArr);
+        drawChart()
+
+});
+
+
+//================кличество измерений
+//
+var myCount = mainArray.length;
+    $("<p>Сделано</p>"+mainArray.length+"<p> измерений</p>").appendTo('#counter');
+
+
+//================
+//================
+//================
+
+
+//
+//var count = 0;
+//while(count<100) {
+//    var num = prompt("введите число");
+//    num=num.charAt(num.length-1);
+//    var ending = "измерен";
+//    switch (num) {
+//        case "1":
+//            ending += "ие";
+//            break;
+//        case "2":
+//            ending += "ия";
+//            break;
+//        case "3":
+//            ending += "ия";
+//            break;
+//        case "4":
+//            ending += "ия";
+//            break;
+//        default:
+//            ending += "ий";
+//            break;
+//    };
+//
+//    if(num.charAt(num.length-1))==("1" || "2" || "3" || "4" && num.charAt(num.length-2)=="1" || "2" || "3" || "4")
+//    {
+//        var ending += "ий";
+//    }
+//    count++;
+//    alert(ending);
+//}
