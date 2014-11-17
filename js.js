@@ -3,7 +3,7 @@ google.load('visualization', '1', {'packages': ['corechart']});
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.setOnLoadCallback(function () {
-    drawChart()
+    drawChart(mainArray)
 });
 
 
@@ -35,8 +35,8 @@ var mainArray = [
 ];
 
 
-function drawChart() {
-    var data = google.visualization.arrayToDataTable(mainArray);
+function drawChart(array) {
+    var data = google.visualization.arrayToDataTable(array);
     var options = {
         title: 'СЛЕДИМ ЗА ВЕСОМ'
     };
@@ -46,11 +46,11 @@ function drawChart() {
 
 
 $('#addButton').on('click', function () {
-    if($('#inputDate').val() != '') {
+    if ($('#inputDate').val() != '') {
         var todayDate = $('#inputDate').val();
         var todayWeight = $('#inputWeight').val();
         mainArray.push([todayDate, todayWeight]);
-        drawChart();
+        drawChart(mainArray);
         $('#inputDate').val('');
         $('#inputWeight').val('');
 
@@ -59,26 +59,45 @@ $('#addButton').on('click', function () {
 });
 
 $('#showStats').on('click', function () {
-    if($('#startDate').val() != '') {
+    if ($('#startDate').val() != '') {
         var startDate = $('#startDate').val();
         var endDate = $('#endDate').val();
-        periodArr = mainArray.splice(startDate, endDate);
-        alert(periodArr);
-        drawChart()
+        var newArr = getPeriod(startDate, endDate);
+        newArr.unshift(['date', 'Айк']);
+        console.log(newArr);
+        drawChart(newArr);
         $('#startDate').val('');
         $('#endDate').val('');
-}
+    }
 
 });
+
+
+function getPeriod(periodStart, periodEnd) {
+    for (var i = 0; i < mainArray.length; i++) {
+        if (mainArray[i][0].indexOf(periodStart) >= 0) {
+            var startCount = i;
+            console.log(mainArray[i], i)
+        }
+        if (mainArray[i][0].indexOf(periodEnd) >= 0) {
+            var endCount = i;
+            console.log(mainArray[i], i)
+        }
+    }
+    var periodArr = mainArray.slice(startCount, endCount+1);
+    console.log(periodArr);
+    return periodArr;
+
+}
 
 
 //======УДАЛИТЬ ИЗМЕРЕНИЕ!===================
 
 $('#deleteLast').on('click', function () {
     drawChart()
-    periodArr=mainArray.splice(mainArray.length-1);
-        //alert(periodArr);
-        drawChart()
+    periodArr = mainArray.splice(mainArray.length - 1);
+    //alert(periodArr);
+    drawChart()
 
 });
 
@@ -86,7 +105,7 @@ $('#deleteLast').on('click', function () {
 //================кличество измерений
 //
 var myCount = mainArray.length;
-    $("<p>Сделано</p>"+mainArray.length+"<p> измерений</p>").appendTo('#counter');
+$("<p>Сделано</p>" + mainArray.length + "<p> измерений</p>").appendTo('#counter');
 
 
 //================
